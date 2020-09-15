@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
+import 'tachyons';
+import { Cards, Charts, CountryPicker } from './components'; 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(){
+    super();
+    this.state={
+      data: {},
+      country: 'Global',
+      url: 'https://covid19.mathdro.id/api'
+    }
+  }
+  fetchApi = (country) => {
+    let url='';
+    if(country==='Global'){
+      url='https://covid19.mathdro.id/api';
+    }
+    else{
+      url=`https://covid19.mathdro.id/api/countries/${country}`;
+    }
+    fetch(url)
+    .then(response => response.json())
+    .then( ({confirmed,recovered,deaths,lastUpdate}) => this.setState({data:{confirmed,recovered,deaths,lastUpdate}}));
+  }
+  componentDidMount(){
+    this.fetchApi('Global');
+  }
+
+  onCountryChange = (event) => {
+    const currentCountry=event.target.value
+    this.setState({country: event.target.value})
+    this.fetchApi(currentCountry);
+  }
+  render(){
+    const { data,country } = this.state
+    return(
+      <div className='tc container'>
+        <Cards data={data} country={country}/>
+        <CountryPicker onCountryChange={this.onCountryChange}/>
+        <Charts data={data} country={country} />
+      </div>
+    )
+  }
 }
 
 export default App;
