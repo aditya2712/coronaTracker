@@ -52,7 +52,12 @@ const Charts= ({data : {confirmed,recovered,deaths},country}) => {
                 }}
                 options = {{
                     legend: {display: false},
-                    title: { display: true, text: `Current senerio in ${country}`}
+                    title: { display: true, text: `Current senerio in ${country}`},
+                    scales: {
+                        xAxes: [{
+                            barThickness : 150
+                        }]
+                    }
                 }}
             />
         ): null
