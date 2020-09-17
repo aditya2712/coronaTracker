@@ -43,9 +43,9 @@ const Charts= ({data : {confirmed,recovered,deaths},country}) => {
                     datasets: [{
                         label:'People',
                         backgroundColor: [
-                            'rgba(0,0,255,0.5)',
-                            'rgba(0,255,0,0.5)',
-                            'rgba(255,0,0,0.5)'
+                            'rgba(250,100,0,0.7)',
+                            'rgba(1,255,0,0.7)',
+                            'rgba(255,0,0,0.7)'
                         ],
                         data: [confirmed.value,recovered.value,deaths.value]
                     }]
@@ -55,7 +55,7 @@ const Charts= ({data : {confirmed,recovered,deaths},country}) => {
                     title: { display: true, text: `Current senerio in ${country}`},
                     scales: {
                         xAxes: [{
-                            barThickness : 150
+                            barThickness : 24
                         }]
                     }
                 }}
@@ -75,7 +75,7 @@ const Charts= ({data : {confirmed,recovered,deaths},country}) => {
     else{
         return (
             <div className='full' >
-                <div style={{width: '85%', marginTop: '30px', marginBottom: '30px'}}>
+                <div className='mobile'>
                     {barChart}
                 </div>
             </div>

@@ -13,7 +13,9 @@ const Cards= ({data,country}) => {
         <div className='' style={{width:'100%'}}>
             <img src='https://directorsblog.nih.gov/wp-content/uploads/2020/07/COVID-19-Card-24.jpg' alt='banner' height='240px' width='65%' />
             <h2 className='tc'>{new Date(lastUpdate).toDateString()}</h2>
-            <div className='f1 orange fw7'>{country}</div>
+            <div className='f1 orange fw7'>{
+                country==='Global'? 'World': country
+            }</div>
             <div className='tc center'>
                 <article className="mw5 mw6-ns br3 hidden ba b--black-10 mv4 shadow-4">
                     <h1 className="f3 bg-near-white br3 br--top black-60 mv0 pv2 ph3">Active</h1>

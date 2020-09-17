@@ -1,4 +1,15 @@
 .full{
     display: flex;
     justify-content: center;
+    width: 100%;
 }
+.mobile{
+    width: 40%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+@media only screen and (max-width: 1000px) {
+    .mobile {
+        width: 100%;
+    }
+  }
